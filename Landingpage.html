@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+ a.relative:hover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.3s ease-in-out;
+}
+
+a.relative:hover img {
+  opacity: 0.7;
+}
+.imageslide {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.imageslide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+section#contact {
+    background-color: #f3f4f6; /* You can adjust the color as needed */
+  }
+
+
+</style>
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <!-- Tailwind CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.1/dist/tailwind.min.css">
+  <script src="https://kit.fontawesome.com/92d49d5c84.js" crossorigin="anonymous"></script>
+  <!-- AOS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+    <!-- Include the script for Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js"></script>
+  
+    <!-- Include your Firebase configuration from index.js -->
+    <script type="module">
+      import { storage } from './path/to/index.js';
+
+          // Inisialisasi Firebase
+    firebase.initializeApp(firebaseConfig);
+
+// Referensi Storage
+const storage = firebase.storage();
+const storageRef = storage.ref();
+
+// Path folder foto di Firebase Storage
+const photoFolderRef = storageRef.child('path/to/your/photos');
+
+// Fungsi untuk mendapatkan URL gambar
+async function getPhotoUrl(photoName) {
+  try {
+    const photoRef = photoFolderRef.child(photoName);
+    const url = await photoRef.getDownloadURL();
+    return url;
+  } catch (error) {
+    console.error("Error getting photo URL:", error);
+  }
+}
+
+// Fungsi untuk menambahkan foto ke DOM
+async function addPhotoToDOM(photoName, photoAlt, parentElement) {
+  const photoUrl = await getPhotoUrl(photoName);
+
+  const photoContainer = document.createElement('div');
+  photoContainer.classList.add('p-4', 'w-4/6', 'max-h-full', 'md:mr-4', 'mb-4', 'md:mb-0');
+
+  const image = document.createElement('img');
+  image.src = photoUrl;
+  image.alt = photoAlt;
+  image.classList.add('w-full', 'h-auto', 'object-cover', 'object-center', 'border', 'border-gray-200', 'rounded-lg', 'transition', 'duration-300', 'ease-in-out', 'transform', 'hover:-translate-y-1', 'hover:shadow-lg');
+
+  const textContainer = document.createElement('div');
+  textContainer.classList.add('p-4', 'flex', 'flex-col', 'justify-between');
+
+  const title = document.createElement('h3');
+  title.classList.add('text-lg', 'font-bold', 'mb-2');
+  title.textContent = photoAlt;
+
+  textContainer.appendChild(title);
+  photoContainer.appendChild(image);
+  photoContainer.appendChild(textContainer);
+
+  parentElement.appendChild(photoContainer);
+}
+
+// Panggil fungsi untuk menambahkan foto ke DOM
+document.addEventListener('DOMContentLoaded', async () => {
+  const photoContainer = document.querySelector('.grid-cols-1');
+  // Gantilah 'nama_foto.jpg' dengan nama file sebenarnya
+  await addPhotoToDOM('nama_foto.jpg', 'Photo 1', photoContainer);
+  await addPhotoToDOM('nama_foto_lain.jpg', 'Photo 2', photoContainer);
+  // Tambahkan foto lain jika diperlukan
+});
+</script>
+</head>
+
+
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-red-800 py-3">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="#" class="text-xl font-bold text-white px-10">Ventuno Production</a>
+
+      <div class="flex">
+        <button class="block md:hidden border border-white p-2 rounded text-white mr-2" id="menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="hidden md:flex">
+          <a href="Landingpage.html" class="text-white px-3 hover:underline">Home</a>
+          <a href="About.html" class="text-white px-3 hover:underline">About</a>
+          <a href="#services" class="text-white px-3 hover:underline">Our Services</a>
+          <a href="#contact" class="text-white px-3 hover:underline">Contact</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hidden" id="menu">
+      <a href="#" class="block text-white py-2 hover:underline">Home</a>
+      <a href="About.html" class="block text-white py-2 hover:underline">About</a>
+      <a href="" class="block text-white py-2 hover:underline">Our Services</a>
+      <a href="#contact" class="block text-white py-2 hover:underline">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Home -->
+  <nav class="bg-red-900 py-3">
+    <div class="container mx-auto flex flex-wrap items-center justify-between">
+      <div class="w-full md:w-1/2 mb-4 md:mb-0">
+        <h1 class="text-4xl font-bold text-white px-10">Welcome to Ventuno Production</h1>
+        <p class="mt-4 text-xl text-white px-10">We don't remember days, we remember moments.</p>
+        <div id="mobile-text" class="px-10">
+          <p class="mt-4 text-xl text-white">Biarkan gambar dan video berbicara. Kami memahami betapa pentingnya gambar dan video dalam menyampaikan pesan, itulah mengapa kami menawarkan jasa fotografi dan videografi yang dapat membantu Anda membuat kesan yang tahan lama</p>
+        </div>
+        <button id="show-more" class="block mx-auto mt-4 px-4 py-2 bg-red-800 text-white rounded-lg">Show More</button>
+      </div>
+      <div class="w-full md:w-1/2 ">
+        <img src="undraw_Camera_re_cnp4.png" alt="Foto Ventuno Production" class="mx-auto rounded-lg">
+      </div>
+      <style>
+        /* Hide "Show More" button on desktop */
+        @media (min-width: 768px) {
+          #show-more {
+            display: none;
+          }
+        }
+      </style>
+      
+      <script>
+        const showMoreBtn = document.getElementById("show-more");
+        const mobileText = document.getElementById("mobile-text");
+  
+        showMoreBtn.addEventListener("click", function() {
+          mobileText.classList.toggle("hidden");
+          showMoreBtn.textContent = mobileText.classList.contains("hidden") ? "Show More" : "Show Less";
+        });
+      </script>
+    </div>
+  </nav>
+  
+
+  <script>
+    // Add event listener to the menu button
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+
+    menuBtn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+});
+</script>
+
+ 
+
+<!-- Our Services -->
+<section class="bg-white py-16 px-20" >
+<section id="services" class="container mx-auto py-10" data-aos="fade-down">
+  <h2 class="text-2xl font-bold mb-4 text-center px-20">Our Services</h2>
+  <div class="flex flex-wrap justify-between">
+    <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-6">
+      <a href="Photobooth.html" class="relative">
+        <img class="object-contain w-1/2npm install -g firebase-tools hover:opacity-75 transition duration-500" src="https://firebasestorage.googleapis.com/v0/b/ventuno-76fc1.appspot.com/o/Photobooth%2FArtefax%20Ravola%203.jpg?alt=media&token=1733da2f-81e9-4b13-86d3-a32e8784bf21" alt="Photo Booth">
+        <div class="absolute bottom-0 w-full p-4 bg-white">
+          <h3 class="text-xl font-bold mb-2 hover:text-red-500 transition duration-500">Photo Booth</h3>
+          <p class="text-gray-700 text-base">Capture the moment with our photo booth rental service. Perfect for weddings, parties, and corporate events.</p>
+        </div>
+      </a>
+    </div>
+    <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-6">
+      <a href="Eventdocumentation.html" class="relative">
+        <img class="w-full hover:opacity-75 transition duration-500" src="preview.png" alt="Photo Booth">
+        <div class="absolute bottom-0 w-full p-4 bg-white">
+          <h3 class="text-xl font-bold mb-2 hover:text-red-500 transition duration-500">Event Documentation</h3>
+          <p class="text-gray-700 text-base">Let us document your event with our professional photography and videography services.</p>
+        </div>
+      </a>
+    </div>
+      <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-6">
+        <a href="Photoshoot.html" class="relative">
+          <img class="w-full hover:opacity-75 transition duration-500" src="preview.png" alt="Photo Booth">
+          <div class="absolute bottom-0 w-full p-4 bg-white">
+            <h3 class="text-xl font-bold mb-2 hover:text-red-500 transition duration-500">Photoshoot</h3>
+            <p class="text-gray-700 text-base">Book a photoshoot session with us and capture your special moments with loved ones.</p>
+          </div>
+        </a>
+      </div>
+      <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-6">
+        <a href="Videoproduction.html" class="relative">
+          <img class="w-full hover:opacity-75 transition duration-500" src="preview.png" alt="Photo Booth">
+          <div class="absolute bottom-0 w-full p-4 bg-white">
+            <h3 class="text-xl font-bold mb-2 hover:text-red-500 transition duration-500">Video Production</h3>
+            <p class="text-gray-700 text-base">Let us produce high-quality videos for your business, event, or personal use.</p>
+        </div>
+      </a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+</section>
+
+
+  <!-- Our Client -->
+<section class="bg-white py-16 px-20" data-aos="fade-down">
+  <div class="container mx-auto">
+    <h2 class="text-3xl font-bold mb-8 text-center px-20">Our Clients</h2>
+    <p class="text-lg  font-light mb-8 indent-8 text-center">kami telah melayani klien dari berbagai latar belakang dan sektor
+       untuk kebutuhan foto dan video mereka, dan memastikan mereka menerima konten visual berkualitas tinggi yang selaras dengan visi mereka.</p>
+      <div class="max-w-xs">
+        <div class="flex justify-center mt-8">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img src="Our Client (1).png" alt="Client Name" class="square-full w-full max-w-4xl mx-auto">
+</section>
+
+     
+    </section>
+    
+    <!-- Footer -->
+    <footer class="text-white text-center bg-gray-900 py-8 px-20">
+      <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="mb-8 flex flex-col items-center">
+
+          <img src="Ventuno Logo 2.png" alt="Logo" class="mb-2 h-20 w-auto">
+          <p class="mb-4">Ventuno Production adalah digital creator yang berfokus pada jasa fotografi dan videografi.</p>
+          <p>Kami dapat merubah ide menjadi sebuah karya yang melampaui imajinasi Anda.</p>
+          <div class="mt-4 flex justify-center space-x-4">
+            <a href="https://www.instagram.com/ventunoproduction/" class="btn btn-warning btn-lg"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@ventuno.production" class="btn btn-warning btn-lg"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/channel/UC5abALKus_e07NOB7Sfsd6A" class="btn btn-warning btn-lg"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+    
+        <div class="mb-8">
+          <h5 class="text-uppercase mb-4 pb-1">Kontak</h5>
+          <ul class="list-none text-white">
+            <li class="mb-3">
+              <span class="fa-li"><i class="fas fa-house"></i></span>
+              <p><a href="https://goo.gl/maps/zAYDy6fFF7WJPaQEA" class="hover:underline">New York, NY 10012, US</a></p>
+            </li>
+            <li class="mb-3">
+              <span class="fa-li"><i class="fas fa-envelope"></i></span>
+              <p><a href="mailto:ventuno.prod@gmail.com" class="hover:underline">ventuno.prod@gmail.com</a></p>
+            </li>
+            <li class="mb-3">
+              <span class="fa-li"><i class="fas fa-phone"></i></span>
+              <p><a href="https://wa.me/6285172001140" class="hover:underline">+62 8517 2001 140</a></p>
+            </li>
+          </ul>
+        </div>
+    
+        <div class="mb-8 text-center"> <!-- Add text-center class to center the content -->
+          <h5 class="text-uppercase mb-2">Jam Operasional</h5>
+          <table class="mx-auto text-white"> <!-- Add mx-auto class to center the table -->
+            <tbody class="font-normal">
+              <tr>
+                <td class="pr-4">Mon - Thu:</td>
+                <td>8am - 9pm</td>
+              </tr>
+              <tr>
+                <td class="pr-4">Fri - Sat:</td>
+                <td>8am - 1am</td>
+              </tr>
+              <tr>
+                <td class="pr-4">Sunday:</td>
+                <td>9am - 10pm</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+    
+
+    </footer>
+    
+    
+    
+    
+    
+    
+    
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- AOS CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+  // Inisialisasi AOS
+  AOS.init({
+    duration: 1000, // Durasi animasi dalam milidetik
+    easing: 'ease-in-out', // Efek easing animasi
+    once: false, // Animasi hanya dijalankan sekali
+    mirror: true // Animasi tidak dibalik
+  });
+</script>
+  </body>
+  </html>
