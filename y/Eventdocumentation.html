@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Documentation | Ventuno Production</title>
+  <!-- Tailwind CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.1/dist/tailwind.min.css">
+  <style>
+    /* CSS untuk spinner */
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-left-color: #333;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+    }
+
+    section {
+      min-height: 100vh; /* minus the height of the footer */
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
+  <!-- Photobooth Service Section -->
+  <section class="bg-white py-2">
+    <div class="container mx-auto max-w-7xl py-10">
+      <h1 class="text-4xl font-bold text-center mb-8">Event Documentation Service</h1>
+      <!-- Portfolio -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8" id="portfolio">
+        <!-- JavaScript will populate this area -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Bagian JavaScript untuk mengambil dan menampilkan gambar -->
+  <script>
+    // Array objek dengan URL gambar dan judul
+    const imagesData = [
+      {
+        url: "https://firebasestorage.googleapis.com/v0/b/ventuno-76fc1.appspot.com/o/Artefax%20Ravola%202.jpg?alt=media&token=497928bc-7aa0-4523-b707-1d7d5198cc02",
+        title: "Artefax Ravola"
+      },
+      {
+        url: "https://firebasestorage.googleapis.com/v0/b/ventuno-76fc1.appspot.com/o/Photoshoot%2FFAR06664.jpg?alt=media&token=5e41254d-5a78-41de-b0e3-918bd10d6998",
+        title: "Dpresstation"
+      },
+      {
+        url: "https://firebasestorage.googleapis.com/v0/b/ventuno-76fc1.appspot.com/o/Photobooth%2FNawasena%20SMAN%2022%20Bandung%202.jpg?alt=media&token=8547056b-d765-42b3-9308-9b46a91165c5",
+        title: "Nawasena Sman 22 Bandung"
+      },
+      {
+        url: "https://firebasestorage.googleapis.com/v0/b/ventuno-76fc1.appspot.com/o/Photobooth%2FSweet%2017%20Yunisa.jpg?alt=media&token=dbed7ae1-d259-45a0-bad7-6b739ce895b0",
+        title: "Sweet 17 Yunisa"
+      },
+      {
+        url : "https://firebasestorage.googleapis.com/v0/b/ventuno-76fc1.appspot.com/o/Photobooth%2FWisuda%20Telkom%20University%202023.jpg?alt=media&token=986f1fa7-0705-46da-a0d1-d13e7094917a",
+        title: "Wisuda Telkom"
+      }
+    ];
+
+    // Fungsi untuk membuat elemen gambar dan judul dan menyisipkannya ke dalam bagian portfolio
+    function createPortfolioItems() {
+      const portfolioContainer = document.getElementById("portfolio");
+
+      imagesData.forEach(image => {
+        const imgContainer = document.createElement("div");
+        imgContainer.className = "p-4 max-w-xs mx-auto flex flex-col items-center"; // Menggunakan flexbox
+
+        const img = document.createElement("img");
+        img.src = image.url;
+        img.alt = image.title;
+        img.className = "w-3/4 h-auto object-cover object-center md-shadow rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg";
+
+        // Tambahkan elemen spinner
+        const spinner = document.createElement("div");
+        spinner.className = "spinner mt-4"; // Gunakan kelas "spinner" yang akan ditetapkan pada CSS
+
+        // Sembunyikan spinner saat gambar dimuat
+        img.onload = function() {
+          spinner.style.display = "none";
+        };
+
+        const title = document.createElement("h3");
+        title.className = "text-lg font-bold mt-4"; // Tambahkan margin atas agar ada jarak antara gambar dan teks
+        title.textContent = image.title;
+
+        imgContainer.appendChild(img);
+        imgContainer.appendChild(spinner); // Sisipkan elemen spinner di bawah gambar
+        imgContainer.appendChild(title);
+        portfolioContainer.appendChild(imgContainer);
+      });
+    }
+
+    // Panggil fungsi untuk mengisi bagian portofolio dengan gambar-gambar
+    createPortfolioItems();
+  </script>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    // Load external HTML files
+    $(function(){
+      $("#navbar").load("navbar.html");
+      $("#footer").load("footer.html");
+    });
+  </script>
+</body>
+</html>
