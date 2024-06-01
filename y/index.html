@@ -24,6 +24,7 @@
     }
     a.relative:hover img {
       opacity: 0.7;
+      transform: scale(1.05);
     }
     .imageslide {
       display: block;
@@ -36,6 +37,10 @@
       width: 100%;
       height: auto;
       object-fit: cover;
+      transition: transform 0.5s, opacity 0.5s;
+    }
+    .card-title:hover {
+      color: #dc2626;
     }
     section#contact {
       background-color: #f3f4f6; /* You can adjust the color as needed */
@@ -50,15 +55,15 @@
   <!-- Home -->
   <nav class="bg-red-900 py-3">
     <div class="container mx-auto flex flex-wrap items-center justify-between">
-      <div class="w-full md:w-1/2 mb-4 md:mb-0">
-        <h1 class="text-4xl font-bold text-white px-10">Welcome to Ventuno Production</h1>
-        <p class="mt-4 text-xl text-white px-10">We don't remember days, we remember moments.</p>
-        <div id="mobile-text" class="px-10">
-          <p class="mt-4 text-xl text-white">Biarkan gambar dan video berbicara. Kami memahami betapa pentingnya gambar dan video dalam menyampaikan pesan, itulah mengapa kami menawarkan jasa fotografi dan videografi yang dapat membantu Anda membuat kesan yang tahan lama</p>
+      <div class="w-full md:w-1/2 mb-4 md:mb-0 px-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-white">Welcome to Ventuno Production</h1>
+        <p class="mt-4 text-lg md:text-xl text-white">We don't remember days, we remember moments.</p>
+        <div id="mobile-text" class="hidden md:block">
+          <p class="mt-4 text-lg md:text-xl text-white">Biarkan gambar dan video berbicara. Kami memahami betapa pentingnya gambar dan video dalam menyampaikan pesan, itulah mengapa kami menawarkan jasa fotografi dan videografi yang dapat membantu Anda membuat kesan yang tahan lama</p>
         </div>
-        <button id="show-more" class="block mx-auto mt-4 px-4 py-2 bg-red-800 text-white rounded-lg">Show More</button>
+        <button id="show-more" class="block md:hidden mx-auto mt-4 px-4 py-2 bg-red-800 text-white rounded-lg">Show More</button>
       </div>
-      <div class="w-full md:w-1/2">
+      <div class="w-full md:w-1/2 px-4">
         <img src="images/undraw_Camera_re_cnp4.png" alt="Foto Ventuno Production" class="mx-auto rounded-lg">
       </div>
       <style>
@@ -83,42 +88,42 @@
   </nav>
 
   <!-- Our Services -->
-  <section class="bg-white py-16 px-20">
+  <section class="bg-white py-16 px-4 md:px-20">
     <section id="services" class="container mx-auto py-10" data-aos="fade-down">
-      <h2 class="text-2xl font-bold mb-4 text-center px-20">Our Services</h2>
-      <div class="flex flex-wrap justify-between">
-        <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-6">
-          <a href="Photobooth.html" class="relative">
-            <img class="object-contain w-1/2 hover:opacity-75 transition duration-500" src="https://firebasestorage.googleapis.com/v0/b/ventuno-76fc1.appspot.com/o/Photobooth%2FArtefax%20Ravola%203.jpg?alt=media&token=1733da2f-81e9-4b13-86d3-a32e8784bf21" alt="Photo Booth">
-            <div class="absolute bottom-0 w-full p-4 bg-white">
-              <h3 class="text-xl font-bold mb-2 hover:text-red-500 transition duration-500">Photo Booth</h3>
+      <h2 class="text-3xl font-bold mb-10 text-center text-gray-800">Our Services</h2>
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto px-5">
+        <div class="card relative overflow-hidden rounded-lg shadow-lg" data-aos="zoom-in">
+          <a href="Photobooth.html" class="block relative">
+            <img class="card-img w-full transition-transform duration-500" src="https://firebasestorage.googleapis.com/v0/b/ventuno-76fc1.appspot.com/o/Photobooth%2FArtefax%20Ravola%203.jpg?alt=media&token=1733da2f-81e9-4b13-86d3-a32e8784bf21" alt="Photo Booth">
+            <div class="absolute bottom-0 w-full p-4 bg-white bg-opacity-75">
+              <h3 class="card-title text-xl font-bold mb-2 transition-colors duration-500">Photo Booth</h3>
               <p class="text-gray-700 text-base">Capture the moment with our photo booth rental service. Perfect for weddings, parties, and corporate events.</p>
             </div>
           </a>
         </div>
-        <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-6">
-          <a href="Eventdocumentation.html" class="relative">
-            <img class="w-full hover:opacity-75 transition duration-500" src="images/preview.png" alt="Photo Booth">
-            <div class="absolute bottom-0 w-full p-4 bg-white">
-              <h3 class="text-xl font-bold mb-2 hover:text-red-500 transition duration-500">Event Documentation</h3>
+        <div class="card relative overflow-hidden rounded-lg shadow-lg" data-aos="zoom-in">
+          <a href="Eventdocumentation.html" class="block relative">
+            <img class="card-img w-full transition-transform duration-500" src="images/eventdocumentation.png" alt="Event Documentation">
+            <div class="absolute bottom-0 w-full p-4 bg-white bg-opacity-75">
+              <h3 class="card-title text-xl font-bold mb-2 transition-colors duration-500">Event Documentation</h3>
               <p class="text-gray-700 text-base">Let us document your event with our professional photography and videography services.</p>
             </div>
           </a>
         </div>
-        <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-6">
-          <a href="Photoshoot.html" class="relative">
-            <img class="w-full hover:opacity-75 transition duration-500" src="images/preview.png" alt="Photo Booth">
-            <div class="absolute bottom-0 w-full p-4 bg-white">
-              <h3 class="text-xl font-bold mb-2 hover:text-red-500 transition duration-500">Photoshoot</h3>
+        <div class="card relative overflow-hidden rounded-lg shadow-lg" data-aos="zoom-in">
+          <a href="Photoshoot.html" class="block relative">
+            <img class="card-img w-full transition-transform duration-500" src="images/photoshoot.png" alt="Photoshoot">
+            <div class="absolute bottom-0 w-full p-4 bg-white bg-opacity-75">
+              <h3 class="card-title text-xl font-bold mb-2 transition-colors duration-500">Photoshoot</h3>
               <p class="text-gray-700 text-base">Book a photoshoot session with us and capture your special moments with loved ones.</p>
             </div>
           </a>
         </div>
-        <div class="w-full md:w-1/2 lg:w-1/4 px-2 mb-6">
-          <a href="Videoproduction.html" class="relative">
-            <img class="w-full hover:opacity-75 transition duration-500" src="images/preview.png" alt="Photo Booth">
-            <div class="absolute bottom-0 w-full p-4 bg-white">
-              <h3 class="text-xl font-bold mb-2 hover:text-red-500 transition duration-500">Video Production</h3>
+        <div class="card relative overflow-hidden rounded-lg shadow-lg" data-aos="zoom-in">
+          <a href="Videoproduction.html" class="block relative">
+            <img class="card-img w-full transition-transform duration-500" src="images/videoproduction.png" alt="Video Production">
+            <div class="absolute bottom-0 w-full p-4 bg-white bg-opacity-75">
+              <h3 class="card-title text-xl font-bold mb-2 transition-colors duration-500">Video Production</h3>
               <p class="text-gray-700 text-base">Let us produce high-quality videos for your business, event, or personal use.</p>
             </div>
           </a>
@@ -127,18 +132,18 @@
     </section>
   </section>
 
-  <!-- Our Client -->
-  <section class="bg-white py-16 px-20" data-aos="fade-down">
+  <!-- Our Clients -->
+  <section class="bg-white py-16 px-4 md:px-20" data-aos="fade-down">
     <div class="container mx-auto">
-      <h2 class="text-3xl font-bold mb-8 text-center px-20">Our Clients</h2>
-      <p class="text-lg  font-light mb-8 indent-8 text-center">kami telah melayani klien dari berbagai latar belakang dan sektor
+      <h2 class="text-3xl font-bold mb-8 text-center">Our Clients</h2>
+      <p class="text-lg font-light mb-8 indent-8 text-center">Kami telah melayani klien dari berbagai latar belakang dan sektor
         untuk kebutuhan foto dan video mereka, dan memastikan mereka menerima konten visual berkualitas tinggi yang selaras dengan visi mereka.</p>
-      <div class="max-w-xs">
+      <div class="max-w-xs mx-auto">
         <div class="flex justify-center mt-8">
         </div>
       </div>
     </div>
-    <img src="images/our clients copy.png" alt="Client Name" class="square-full w-full max-w-4xl mx-auto">
+    <img src="images/our clientsss.png" alt="Our Clients" class="w-full max-w-5xl mx-auto">
   </section>
 
   <!-- Footer -->
