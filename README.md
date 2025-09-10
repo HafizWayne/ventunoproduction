@@ -22,4 +22,3 @@ Ventuno dibangun oleh tim kecil yang terdiri dari mahasiswa dan freelancer muda 
 ## 📫 Hubungi Kami
 - Instagram: [@ventunoproduction](https://instagram.com/ventunoproduction)  
 - Email: ventuno.prod@gmail.com  
-- LinkedIn: [Ventuno Production](https://linkedin.
