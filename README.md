@@ -4,9 +4,7 @@ Ventuno Production adalah usaha kreatif berbasis digital yang berfokus pada **fo
 
 ## 🎯 Layanan Kami
 - 📸 Fotografi & Videografi
-- 🎨 Desain Konten Kreatif (grafis, poster, social media feed)
-- 🌐 Pengelolaan Website (maintenance, content update, basic SEO)
-- 📱 Manajemen Media Sosial (branding, publikasi, engagement)
+- 🎨 Photobooth
 
 
 ## 🛠️ Tech & Tools
